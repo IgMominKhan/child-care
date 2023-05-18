@@ -3,10 +3,10 @@ import Header from "../shared/Header";
 
 const MainLayout = () => {
   return (
-    <>
+    <div className='container'>
       <Header />
       <Outlet />
-    </>
+    </div>
   );
 };
 
