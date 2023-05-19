@@ -1,13 +1,33 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../Providers/AuthProvider";
+import Swal from "sweetalert2";
+
 // import brandImg from '../assets/brand'
 
 const NavigationBar = () => {
+
+  
+  const { user, logout} = useContext(AuthContext);
+
+
+  // handle logout 
+  const handleLogout = ()=> {
+    logout()
+    .then(()=> {
+        Swal.fire({title:'Success',text:'You are logged out'})
+      })
+    .catch(err=> console.error)
+  }
+
+
+  
   return (
     <Navbar
       fluid={true}
       rounded={true}
-      className="md:my-10 relative md:text-xl"
+      className="pb-8 md:pb-12 my-0 relative md:text-xl"
     >
       {/* brand */}
       <Navbar.Brand className="mx-auto md:mx-0" href="/">
@@ -20,80 +40,91 @@ const NavigationBar = () => {
           />
           */
         }
-        <span className="text-[clamp(1.5rem,3vw+1rem,3.25rem)] self-center whitespace-nowrap font-semibold dark:text-white">
+        <span className="text-blue-700 text-[clamp(1.5rem,3vw+1rem,3.25rem)] self-center whitespace-nowrap font-semibold dark:text-white">
           Child Care
         </span>
       </Navbar.Brand>
 
       {/* Dropdown */}
+
       <div className="flex md:order-2">
-        <Dropdown
-          arrowIcon={false}
-          inline={true}
-          label={
-            <Avatar
-              className="w-12 h-12"
-              alt="User settings"
-              img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-              rounded={true}
-            />
-          }
-        >
-          <Dropdown.Header>
-            <span className="block text-sm">
-              Bonnie Green
-            </span>
-            <span className="block truncate text-sm font-medium">
-              name@flowbite.com
-            </span>
-          </Dropdown.Header>
-          <Dropdown.Item>
-            Dashboard
-          </Dropdown.Item>
-          <Dropdown.Item>
-            Settings
-          </Dropdown.Item>
-          <Dropdown.Item>
-            Earnings
-          </Dropdown.Item>
-          <Dropdown.Divider />
-          <Dropdown.Item>
-            Sign out
-          </Dropdown.Item>
-        </Dropdown>
+        {user
+          ? (
+            <Dropdown
+              arrowIcon={false}
+              inline={true}
+              label={user &&
+                (
+                  <Avatar
+                    img={user?.img}
+                    title={user.displayName}
+                    rounded={true}
+                  />
+                )}
+            >
+              <Dropdown.Header>
+                <span className="block text-sm">
+                  {user.displayName}
+                </span>
+                <span className="block truncate text-sm font-medium">
+                  {user?.email}
+                </span>
+              </Dropdown.Header>
+              <Dropdown.Item>
+                Dashboard
+              </Dropdown.Item>
+              <Dropdown.Item>
+                Settings
+              </Dropdown.Item>
+              <Dropdown.Item>
+                Earnings
+              </Dropdown.Item>
+              <Dropdown.Divider />
+              
+              <Dropdown.Item onClick={handleLogout}>
+                
+                Sign out
+              </Dropdown.Item>
+            </Dropdown>
+          )
+          : <NavLink to="/login">Login</NavLink>}
         <Navbar.Toggle className="absolute left-0" />
       </div>
 
       {/* collapse buttom */}
       <Navbar.Collapse>
-        
         {/* Navigation link */}
-        <NavLink className='md:text-xl' to="/">
+        <NavLink className="md:text-xl" to="/">
           <Navbar.Link
             active={true}
-            as='span'
+            as="span"
           >
             Home
           </Navbar.Link>
         </NavLink>
-        <NavLink className='md:text-xl' >
-          <Navbar.Link as='span'>
-            About
+        <NavLink className="md:text-xl" to="/toys">
+          <Navbar.Link as="span">
+            All Toys
           </Navbar.Link>
         </NavLink>
-        <NavLink className='md:text-xl ' >
-          <Navbar.Link as='span'>
-            Services
-          </Navbar.Link>
-        </NavLink>
-        <NavLink className='md:text-xl' >
-          <Navbar.Link as='span'>
-            Pricing
-          </Navbar.Link>
-        </NavLink>
-        <NavLink className='md:text-xl' >
-          <Navbar.Link as='span'>
-            Contact
+        {user &&
+          (
+            <>
+              <NavLink className="md:text-xl" to="/my-toys">
+                <Navbar.Link as="span">
+                  My Toys
+                </Navbar.Link>
+              </NavLink>
+              <NavLink className="md:text-xl" to="/add-toy">
+                <Navbar.Link as="span">
+                  Add A Toy
+                </Navbar.Link>
+              </NavLink>
+            </>
+          )}
+        <NavLink className="md:text-xl" to="/blog">
+          <Navbar.Link as="span">
+            Blog
           </Navbar.Link>
         </NavLink>
       </Navbar.Collapse>
