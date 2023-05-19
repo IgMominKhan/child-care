@@ -7,22 +7,18 @@ import Swal from "sweetalert2";
 // import brandImg from '../assets/brand'
 
 const NavigationBar = () => {
+  const { user,setUser, logOut } = useContext(AuthContext);
 
-  
-  const { user, logout} = useContext(AuthContext);
-
-
-  // handle logout 
-  const handleLogout = ()=> {
-    logout()
-    .then(()=> {
-        Swal.fire({title:'Success',text:'You are logged out'})
+  // handle logout
+  const handleLogout = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({ title: "Success", text: "You are logged out" });
+        setUser(null);
       })
-    .catch(err=> console.error)
-  }
+      .catch((err) => console.error);
+  };
 
-
-  
   return (
     <Navbar
       fluid={true}
@@ -56,7 +52,7 @@ const NavigationBar = () => {
               label={user &&
                 (
                   <Avatar
-                    img={user?.img}
+                    img={user?.photoURL}
                     title={user.displayName}
                     rounded={true}
                   />
@@ -80,9 +76,8 @@ const NavigationBar = () => {
                 Earnings
               </Dropdown.Item>
               <Dropdown.Divider />
-              
+
               <Dropdown.Item onClick={handleLogout}>
-                
                 Sign out
               </Dropdown.Item>
             </Dropdown>
@@ -95,9 +90,7 @@ const NavigationBar = () => {
       <Navbar.Collapse>
         {/* Navigation link */}
         <NavLink className="md:text-xl" to="/">
-          <Navbar.Link
-            as="span"
-          >
+          <Navbar.Link as="span">
             Home
           </Navbar.Link>
         </NavLink>
