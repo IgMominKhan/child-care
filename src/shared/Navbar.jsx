@@ -7,7 +7,7 @@ const NavigationBar = () => {
     <Navbar
       fluid={true}
       rounded={true}
-      className=" md:my-0 py-0 relative md:text-xl"
+      className="md:my-10 relative md:text-xl"
     >
       {/* brand */}
       <Navbar.Brand className="mx-auto md:mx-0" href="/">
@@ -20,7 +20,7 @@ const NavigationBar = () => {
           />
           */
         }
-        <span className="text-blue-700 text-[clamp(1.5rem,3vw+1rem,3.25rem)] self-center whitespace-nowrap font-semibold dark:text-white">
+        <span className="text-[clamp(1.5rem,3vw+1rem,3.25rem)] self-center whitespace-nowrap font-semibold dark:text-white">
           Child Care
         </span>
       </Navbar.Brand>
@@ -81,7 +81,7 @@ const NavigationBar = () => {
             About
           </Navbar.Link>
         </NavLink>
-        <NavLink className='md:text-xl' >
+        <NavLink className='md:text-xl ' >
           <Navbar.Link as='span'>
             Services
           </Navbar.Link>

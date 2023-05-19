@@ -12,7 +12,8 @@ const Routes = createBrowserRouter(
       children: [
         {
           path: '/',
-          element: <Home/>
+          element: <Home/>,
+          loader: ()=> fetch('https://child-care-server.vercel.app/toys')
         }
       ]
       
