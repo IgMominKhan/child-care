@@ -44,7 +44,7 @@ const Toys = () => {
                   {toy?.name}
                 </td>
                 <td className="px-6 py-4">
-                  {toy["sub-category"]}
+                  {toy?.subCategory}
                 </td>
                 <td className="px-6 py-4">
                   {toy?.qty || 'not available' }

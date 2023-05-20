@@ -23,7 +23,7 @@ const NavigationBar = () => {
     <Navbar
       fluid={true}
       rounded={true}
-      className="py-10 relative md:text-xl"
+      className="my-6 relative md:text-xl"
     >
       {/* brand */}
       <Navbar.Brand className="mx-auto md:mx-0" href="/">

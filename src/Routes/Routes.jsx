@@ -5,6 +5,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import Toys from "../pages/Product/Toys";
+import AddToy from "../pages/AddToy/AddToy";
 
 const Routes = createBrowserRouter(
   [
@@ -31,6 +32,10 @@ const Routes = createBrowserRouter(
           element: <Toys />,
           loader: () => fetch("https://child-care-server.vercel.app/toys"),
         },
+        {
+          path: 'add-toy',
+          element: <AddToy/>
+        }
       ],
     },
   ],
