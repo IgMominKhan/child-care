@@ -4,8 +4,8 @@ import { Button } from "flowbite-react";
 const Toys = () => {
   const toys = useLoaderData();
   return (
-    <section className='mt-4'>
-      <h1 className='title lg:mb-12'> Our Awesome products</h1>
+    <section className="mt-4">
+      <h1 className="title lg:mb-12">Our Awesome products</h1>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -36,7 +36,7 @@ const Toys = () => {
               <tr className="bg-white border-b hover:bg-gray-50 font-semibold text-gray-900">
                 <td className="w-32 p-4">
                   <img
-                  className='max-h-20 w-full'
+                    className="max-h-20 w-full"
                     src={toy?.img}
                   />
                 </td>
@@ -47,19 +47,19 @@ const Toys = () => {
                   {toy?.subCategory}
                 </td>
                 <td className="px-6 py-4">
-                  {toy?.qty || 'not available' }
+                  {toy?.qty || "not available"}
                 </td>
                 <td className="px-6 py-4">
                   ${toy?.price}
                 </td>
                 <td className="px-6 py-4">
-                  <Button>
-                    <Link
-                      to={`/toys/${toy._id}`}
-                    >
+                  <Link
+                    to={`/toys/${toy._id}`}
+                  >
+                    <Button>
                       View Details
-                    </Link>
-                  </Button>
+                    </Button>
+                  </Link>
                 </td>
               </tr>
             ))}

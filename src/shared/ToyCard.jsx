@@ -1,9 +1,10 @@
 import { Card } from "flowbite-react";
 import Rating from "react-rating";
 import {AiFillStar, AiOutlineStar} from 'react-icons/ai'
+import { Link } from "react-router-dom";
 
 const ToyCard = ({ toy }) => {
-  const { name, price,rating, img } = toy;
+  const { _id, name, price,rating, img } = toy;
   return (
     <>
       <div className="max-w-sm w-full mx-auto">
@@ -31,12 +32,12 @@ const ToyCard = ({ toy }) => {
             <span className="text-3xl font-bold text-gray-900 dark:text-white">
               ${price}
             </span>
-            <a
-              href="#"
+            <Link
+              to={`/toys/${_id}`}
               className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               View Details
-            </a>
+            </Link>
           </div>
         </Card>
       </div>

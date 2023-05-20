@@ -1,13 +1,9 @@
 import { Button, Checkbox, Label, Textarea, TextInput } from "flowbite-react";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const AddToy = () => {
-  const [err, setErr] = useState("");
-  const [errorColor, setErrorColor] = useState("");
 
   const { user } = useContext(AuthContext);
 
@@ -56,7 +52,7 @@ const AddToy = () => {
       })
       .catch((err) => {
         Swal.fire({ icon: "error", title: "!Oops", text: "Failed to add" });
-        console.error(err)
+        console.error(err);
       });
 
     console.log(
