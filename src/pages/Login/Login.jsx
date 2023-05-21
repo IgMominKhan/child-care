@@ -1,4 +1,4 @@
-import auth from '../../../configs/Firebase'
+import auth from "../../../configs/Firebase";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { Button, Checkbox, Label, TextInput } from "flowbite-react";
@@ -6,15 +6,21 @@ import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Login = () => {
+  const { setIsLoading } = useContext(AuthContext);
+
   const [err, setErr] = useState("");
   const [errorColor, setErrorColor] = useState("");
   const { setUser, googleSignIn, login } = useContext(
     AuthContext,
   );
 
-  console.log(googleSignIn)
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,6 +33,11 @@ const Login = () => {
     login(email, password)
       .then((userCrediential) => {
         setUser(userCrediential.user);
+        if (userCrediential.user) {
+          Swal.fire("Success", "you are logged in", "success");
+          setIsLoading(false);
+          navigate(from);
+        }
       })
       .catch((err) => {
         Swal.fire({
@@ -40,19 +51,19 @@ const Login = () => {
   };
 
   const googleProvider = new GoogleAuthProvider();
-  
+
   // handle google signin
   const handleGoogleSignIn = () => {
-    signInWithPopup(auth,googleProvider)
+    signInWithPopup(auth, googleProvider)
       .then((result) => {
         if (result.user) {
           setUser(result.user);
-          console.log(result.user)
           Swal.fire({
             icon: "success",
             title: "Success",
             text: "Your are signed in",
           });
+          navigate(from);
         }
       })
       .catch((err) => {

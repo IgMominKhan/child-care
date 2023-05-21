@@ -3,18 +3,21 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 // import brandImg from '../assets/brand'
 
 const NavigationBar = () => {
-  const { user,setUser, logOut } = useContext(AuthContext);
+  const { user,setUser,setIsLoding, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   // handle logout
   const handleLogout = () => {
     logOut()
       .then(() => {
-        Swal.fire({ title: "Success", text: "You are logged out" });
         setUser(null);
+        Swal.fire({ title: "Success", text: "You are logged out" });
+       navigate('/') 
       })
       .catch((err) => console.error);
   };

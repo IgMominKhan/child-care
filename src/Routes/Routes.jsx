@@ -8,6 +8,7 @@ import Toys from "../pages/Product/Toys";
 import AddToy from "../pages/AddToy/AddToy";
 import Details from "../pages/Details/Details";
 import MyToy from "../pages/MyToy/MyToy";
+import PrivateRoute from "./PrivateRoute";
 
 const Routes = createBrowserRouter(
   [
@@ -36,17 +37,17 @@ const Routes = createBrowserRouter(
         },
         {
           path: "add-toy",
-          element: <AddToy />,
+          element: <PrivateRoute><AddToy /></PrivateRoute>,
         },
         {
           path: "toys/:id",
-          element: <Details />,
+          element:<PrivateRoute> <Details /></PrivateRoute>,
           loader: ({ params }) =>
             fetch(`https://child-care-server.vercel.app/toys/${params.id}`),
         },
         {
           path: "my-toys",
-          element: <MyToy />,
+          element:<PrivateRoute> <MyToy /></PrivateRoute>,
         },
       ],
     },

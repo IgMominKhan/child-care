@@ -80,7 +80,6 @@ const MyToy = () => {
 
   // handle delete
   const handleDelete = (_id) => {
-    console.log(_id);
     Swal.fire({
       title: "Do you want to delete the item?",
       showDenyButton: true,
@@ -97,7 +96,6 @@ const MyToy = () => {
         })
           .then((res) => res.json())
           .then((result) => {
-            console.log(result);
             if (result.deletedCount) {
               Swal.fire("Deleted!", "", "success");
 

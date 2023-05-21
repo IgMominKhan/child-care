@@ -33,7 +33,7 @@ const Toys = () => {
           <tbody>
             {/* all toys */}
             {toys.map((toy) => (
-              <tr className="bg-white border-b hover:bg-gray-50 font-semibold text-gray-900">
+              <tr key={toy?._id} className="bg-white border-b hover:bg-gray-50 font-semibold text-gray-900">
                 <td className="w-32 p-4">
                   <img
                     className="max-h-20 w-full"
