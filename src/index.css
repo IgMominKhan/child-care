@@ -48,3 +48,7 @@ section {
 [data-testid="carousel-right-control"] span {
   @apply bg-slate-600;
 }
+
+.blog p {
+  @apply !text-2xl;
+}
