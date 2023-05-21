@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, Navbar } from "flowbite-react";
+import { Avatar, Button, Dropdown, Navbar } from "flowbite-react";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthProvider";
@@ -85,7 +85,7 @@ const NavigationBar = () => {
               </Dropdown.Item>
             </Dropdown>
           )
-          : <NavLink to="/login">Login</NavLink>}
+          : <NavLink to="/login"><Button>Login</Button></NavLink>}
         <Navbar.Toggle className="absolute left-0" />
       </div>
 

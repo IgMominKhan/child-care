@@ -22,7 +22,7 @@ html {
 }
 
 body {
-  font-family: poppins;
+	font-family: 'Ubuntu', sans-serif;
 }
 
 section {
@@ -33,6 +33,10 @@ section {
   @apply w-11/12 mx-auto max-w-7xl;
 }
 
+.banner {
+  background-image: url('./assets/boy.jpg');
+ @apply bg-cover min-h-screen bg-right-bottom text-white font-bold md:text-left grid items-center
+}
 .card {
   @apply w-full;
 }

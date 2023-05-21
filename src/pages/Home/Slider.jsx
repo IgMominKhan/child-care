@@ -1,21 +1,16 @@
 import { Carousel } from "flowbite-react";
+import img0 from '../../assets/0.jpg'
+import img1 from '../../assets/1.jpg'
+import img2 from '../../assets/2.jpg'
 
 const Slider = () => {
   return (
-    <div>
+    <div className="my-12">
       <div className=" md:min-h-screen sm:h-64 xl:h-80 2xl:h-96 text">
         <Carousel>
-          <div
-            className="bg-[#efefef] flex h-full items-center justify-center">
-            <h1 className="text-6xl p-12 mt-8 max-w-4xl mx-auto">Our Mission is to Take care your child education?</h1>
-            kj
-          </div>
-          <div className="bg-[#efefef] flex h-full items-center justify-center">
-            Slide 2
-          </div>
-          <div className="bg-[#efefef] flex h-full items-center b justify-center">
-            Slide 3
-          </div>
+          <img src={img0} alt=""/>
+          <img src={img1} alt=""/>
+          <img src={img2} alt=""/>
         </Carousel>
       </div>
     </div>

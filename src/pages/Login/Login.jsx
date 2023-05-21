@@ -35,7 +35,7 @@ const Login = () => {
         setUser(userCrediential.user);
         if (userCrediential.user) {
           Swal.fire("Success", "you are logged in", "success");
-          setIsLoading(false);
+          // setIsLoading(false);
           navigate(from);
         }
       })
