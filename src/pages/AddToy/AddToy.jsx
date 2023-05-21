@@ -46,7 +46,7 @@ const AddToy = () => {
             title: "Success",
             text: "New Toy Added",
           });
-          console.log(result);
+          form.reset();
         }
       })
       .catch((err) => {

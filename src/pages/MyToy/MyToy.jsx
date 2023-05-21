@@ -20,13 +20,20 @@ const MyToy = () => {
       .catch((err) => console.error(err));
   }
 
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-  }
-
   function closeModal() {
     setIsOpen(false);
   }
+
+  const { user } = useContext(AuthContext);
+
+  const [myToys, setMyToys] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://child-care-server.vercel.app/toys?email=${user.email}`)
+      .then((res) => res.json())
+      .then((toys) => setMyToys(toys))
+      .catch((err) => console.error(err));
+  }, [user]);
 
   // handleSubmit
   const handleSubmit = (e) => {
@@ -51,25 +58,25 @@ const MyToy = () => {
         if (result.modifiedCount) {
           Swal.fire("Success", "Toy information updated", "success");
           form.reset();
+          closeModal();
+
+          // update ui
+          const updatedToy = myToys.find((prevToy) => toy._id === prevToy._id);
+
+          updatedToy.price = price;
+          updatedToy.name = name;
+          updatedToy.details = details;
+
+          const remaining = myToys.filter((t) => t._id !== toy._id);
+
+          setMyToys([...remaining, updatedToy]);
         }
       })
       .catch((err) => {
         console.error(err);
         Swal.fire({ title: "Oops!", icon: "error", text: "Failed to update" });
       });
-
   };
-
-  const { user } = useContext(AuthContext);
-
-  const [myToys, setMyToys] = useState([]);
-
-  useEffect(() => {
-    fetch(`https://child-care-server.vercel.app/toys?email=${user.email}`)
-      .then((res) => res.json())
-      .then((toys) => setMyToys(toys))
-      .catch((err) => console.error(err));
-  }, [user]);
 
   // handle delete
   const handleDelete = (_id) => {
@@ -93,6 +100,10 @@ const MyToy = () => {
             console.log(result);
             if (result.deletedCount) {
               Swal.fire("Deleted!", "", "success");
+
+              const remaining = myToys.filter((t) => t._id !== _id);
+
+              setMyToys(remaining);
             }
           })
           .catch((err) => console.error(err));
@@ -192,7 +203,6 @@ const MyToy = () => {
       {/* update modal*/}
       <Modal
         isOpen={modalIsOpen}
-        onAfterOpen={afterOpenModal}
         onRequestClose={closeModal}
         contentLabel="Example Modal"
       >
