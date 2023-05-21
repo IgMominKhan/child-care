@@ -4,7 +4,6 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 
 const AddToy = () => {
-
   const { user } = useContext(AuthContext);
 
   const handleSubmit = (e) => {
@@ -54,23 +53,12 @@ const AddToy = () => {
         Swal.fire({ icon: "error", title: "!Oops", text: "Failed to add" });
         console.error(err);
       });
-
-    console.log(
-      name,
-      photo,
-      sellerName,
-      sellerEmail,
-      subCategory,
-      price,
-      rating,
-      qty,
-      details,
-    );
   };
+  
   return (
     <main>
       <div>
-        <section className="bg-gray-100 dark:bg-gray-900 mt-0">
+        <section className="bg-gray-100 mt-0">
           <div className="flex flex-col items-center justify-center px-6 py-8 md:py-32 mx-auto md:max-w-3xl">
             <div className="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md md:max-w-none xl:p-0">
               <div className="space-y-4 md:space-y-6 p-8 md:p-12">
